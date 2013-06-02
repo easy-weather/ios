@@ -19,27 +19,37 @@
 
 			var readyElement = this.el.find("#content");
 			
-			var tabBar = cordova.require("cordova/plugin/iOSTabBar");
+			this.tabBar = cordova.require("cordova/plugin/iOSTabBar");
 			
-			tabBar.init();
+			this.tabBar.init();
 			
-			tabBar.createItem("today", "Today", "thermometer.png", {
+			this.tabBar.createItem("today", "Today", "thermometer.png", {
 			  onSelect: $.proxy(function() {
 					this.render();
 			  }, this)
 			});
-			tabBar.createItem("forecast", "Forecast", "weather.png", {
+			
+			this.tabBar.createItem("forecast", "Forecast", "weather.png", {
 			  onSelect: $.proxy(function() {
 					this.renderSecondView();
 			  }, this)
 			});
 			
-			tabBar.show();
-			tabBar.showItems("today", "forecast");
+			this.tabBar.show();
+			this.tabBar.showItems("today", "forecast");
 			
-			tabBar.selectItem("today");
+			this.tabBar.selectItem("today");
 			
-			window.addEventListener("resize", function() { tabBar.resize() }, false);
+			window.addEventListener("resize", function() { this.tabBar.resize() }, false);
+	 },
+	 error: function(message) {
+	 	this.el.html(this.template());
+	 
+		this.tabBar.hide();
+		var error = new WEATHER.Views.Oops();
+		error.render();
+		
+		return this.el.find("#content").html(error.el);
 	 },
 	 render: function() {
 		this.el.html(this.template());

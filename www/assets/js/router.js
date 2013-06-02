@@ -12,7 +12,15 @@ function onDeviceReady() {
 			"": "home"
 		},
 		home: function() {
-			return this.appModel.on("geoLocationFound", (function() {
+			this.appModel.on("geoLocationError", (function() {
+				//this.appView.render();
+				this.appView.error("We are having trouble finding your location, is your location service enabled?");
+				
+				return $("body").html(this.appView.el.html());
+				
+			}), this);
+			
+			this.appModel.on("geoLocationFound", (function() {
 				var conditions, forecast,
 				_this = this;
 			
@@ -55,6 +63,9 @@ function onDeviceReady() {
 					appModel.geoLocation = pos;
 				
 					return appModel.trigger("geoLocationFound");
+				},
+				function(error) {
+					return appModel.trigger("geoLocationError");
 				});
 			} else {
 				this.appModel.noGeoLocation = true;

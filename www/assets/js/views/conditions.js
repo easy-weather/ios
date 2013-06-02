@@ -10,8 +10,6 @@
 	 render: function() {
 		var conditions, uv;
 		
-		//alert(this.model.models[0]);
-		
 		uv = this.model.models[0].get("UV");
 		
 		if(uv < 0) {

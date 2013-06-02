@@ -14,7 +14,7 @@
 		Templates: {}
 	};
 
-	templates = ["conditions", "forecast", "forecastDay", "app"];
+	templates = ["conditions", "forecast", "forecastDay", "app", "error"];
 
 	_.each(templates, function (template) {
 		$.ajax({
