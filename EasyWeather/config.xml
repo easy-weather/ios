@@ -51,6 +51,7 @@
         <plugin name="Capture" value="CDVCapture" />
         <plugin name="SplashScreen" value="CDVSplashScreen" />
         <plugin name="InAppBrowser" value="CDVInAppBrowser" />
+        <plugin name="TabBar" value="TabBar" />        
     </plugins>
 
     <access origin="*" />

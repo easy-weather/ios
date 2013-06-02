@@ -15,30 +15,35 @@
 			if (options.model) {
 					this.model = options.model;
 			}
-	 },
-	 render: function() {
-		this.el.html(this.template());
-		if (this.model.activeView) {
+			
+
 			var readyElement = this.el.find("#content");
 			
 			var tabBar = cordova.require("cordova/plugin/iOSTabBar");
 			
 			tabBar.init();
 			
-			//tabBar.create({selectedImageTintColorRgba: "255,40,0,255"});
-			
-			tabBar.createItem("contacts", "Unused, iOS replaces this text by Contacts", "tabButton:Contacts");
+			tabBar.createItem("contacts", "Unused, iOS replaces this text by Contacts", "tabButton:Contacts", {
+			  onSelect: $.proxy(function() {
+					this.render();
+			  }, this)
+			});
 			tabBar.createItem("recents", "Unused, iOS replaces this text by Recents", "tabButton:Recents", {
-			  onSelect: function() {
-					alert("Recents tab selected");
-			  }
+			  onSelect: $.proxy(function() {
+					this.renderSecondView();
+			  }, this)
 			});
 			
 			tabBar.show();
 			tabBar.showItems("contacts", "recents");
 			
+			tabBar.selectItem("contacts");
+			
 			window.addEventListener("resize", function() { tabBar.resize() }, false);
-		
+	 },
+	 render: function() {
+		this.el.html(this.template());
+		if (this.model.activeView) {		
 			this.model.activeView.appDelegate = this;
 			this.model.activeView.render();
 			
@@ -50,7 +55,7 @@
 			this.model.secondView.appDelegate = this;
 			this.model.secondView.render();
 			
-			return this.el.find("#content").append(this.model.secondView.el);
+			return this.el.find("#content").html(this.model.secondView.el);
 		}
 	 },
 	 postRender: function() {}

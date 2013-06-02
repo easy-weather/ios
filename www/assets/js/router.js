@@ -30,9 +30,9 @@ function onDeviceReady() {
 					model: conditions
 				});
 				
-				/*this.appModel.secondView = new WEATHER.Views.Forecast({
+				this.appModel.secondView = new WEATHER.Views.Forecast({
 					model: forecast
-				});*/
+				});
 				
 				this.appModel.activeView.model.fetch({
 					success: function() {
@@ -40,11 +40,7 @@ function onDeviceReady() {
 					  }
 				});
 				
-				return this.appModel.secondView.model.fetch({
-					success: function() {
-					  return _this.appView.renderSecondView();
-					}
-				});
+				return this.appModel.secondView.model.fetch();
 			}), this);
 		},
 		initialize: function() {
