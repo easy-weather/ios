@@ -23,21 +23,21 @@
 			
 			tabBar.init();
 			
-			tabBar.createItem("contacts", "Unused, iOS replaces this text by Contacts", "tabButton:Contacts", {
+			tabBar.createItem("today", "Today", "thermometer.png", {
 			  onSelect: $.proxy(function() {
 					this.render();
 			  }, this)
 			});
-			tabBar.createItem("recents", "Unused, iOS replaces this text by Recents", "tabButton:Recents", {
+			tabBar.createItem("forecast", "Forecast", "weather.png", {
 			  onSelect: $.proxy(function() {
 					this.renderSecondView();
 			  }, this)
 			});
 			
 			tabBar.show();
-			tabBar.showItems("contacts", "recents");
+			tabBar.showItems("today", "forecast");
 			
-			tabBar.selectItem("contacts");
+			tabBar.selectItem("today");
 			
 			window.addEventListener("resize", function() { tabBar.resize() }, false);
 	 },
