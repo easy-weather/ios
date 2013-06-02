@@ -26,6 +26,49 @@
       if (options.debug) {
         return this.debug = options.debug;
       }
+    },
+    parse: function(response) {
+      var storageResponse, storageResponseTime, timeDifference, updateStorage;
+        updateStorage = true;
+        storageResponse = localStorage.getItem(this.StorageName);
+        storageResponseTime = localStorage.getItem(this.StorageName + "Time");
+        if (storageResponse && storageResponseTime) {
+          timeDifference = new Date().getTime() - storageResponseTime;
+          if (timeDifference < 3600000) {
+            updateStorage = false;
+          }
+        }
+        if (updateStorage) {
+          localStorage.setItem(this.StorageName, JSON.stringify(response));
+          localStorage.setItem(this.StorageName + "Time", new Date().getTime());
+        }
+        
+      return response;
+    },
+    sync: function(method, model, options) {
+      var forceServer, storageResponse, storageResponseTime, timeDifference;
+      forceServer = true;
+      options.dataType = "jsonp";
+      switch (method) {
+        case "create":
+          return Backbone.sync(method, model, options);
+        case "update":
+          return Backbone.sync(method, model, options);
+        case "delete":
+          return Backbone.sync(method, model, options);
+      }
+        storageResponse = localStorage.getItem(this.StorageName);
+        storageResponseTime = localStorage.getItem(this.StorageName + "Time");
+        if (storageResponse && storageResponseTime) {
+          timeDifference = new Date().getTime() - storageResponseTime;
+          if (timeDifference < 43200000) {
+            forceServer = false;
+            options.success(JSON.parse(storageResponse));
+          }
+        }
+      if (forceServer) {
+        return Backbone.sync(method, model, options);
+      }
     }
   }));
 
