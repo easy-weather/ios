@@ -2,7 +2,9 @@
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
-function onDeviceReady() {		
+function onDeviceReady() {
+	document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
+
 	var AppRouter;
 	
 	AppRouter = Backbone.Router.extend({
@@ -28,9 +30,9 @@ function onDeviceReady() {
 					model: conditions
 				});
 				
-				this.appModel.secondView = new WEATHER.Views.Forecast({
+				/*this.appModel.secondView = new WEATHER.Views.Forecast({
 					model: forecast
-				});
+				});*/
 				
 				this.appModel.activeView.model.fetch({
 					success: function() {

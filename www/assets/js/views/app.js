@@ -13,37 +13,47 @@
 			}
 		
 			if (options.model) {
-	        	this.model = options.model;
-				this.model.on("geoLocationFound", function() {
-					_this.positionAcquired();
-				});
+					this.model = options.model;
 			}
-    },
-    positionAcquired: function() {
-      this.mapView = new WEATHER.Views.Map({
-        model: this.model,
-        appDelegate: this
-      });
-      this.mapView.render();
-      $("body").append(this.mapView.el);
-      return this.mapView.postRender();
-    },
-    render: function() {
-      this.el.html(this.template());
-      if (this.model.activeView) {
-        this.model.activeView.appDelegate = this;
-        this.model.activeView.render();
-        return this.el.find("#content").html(this.model.activeView.el);
-      }
-    },
-    renderSecondView: function() {
-      if (this.model.secondView) {
-        this.model.secondView.appDelegate = this;
-        this.model.secondView.render();
-        return this.el.find("#content").append(this.model.secondView.el);
-      }
-    },
-    postRender: function() {}
+	 },
+	 render: function() {
+		this.el.html(this.template());
+		if (this.model.activeView) {
+			var readyElement = this.el.find("#content");
+			
+			var tabBar = cordova.require("cordova/plugin/iOSTabBar");
+			
+			tabBar.init();
+			
+			//tabBar.create({selectedImageTintColorRgba: "255,40,0,255"});
+			
+			tabBar.createItem("contacts", "Unused, iOS replaces this text by Contacts", "tabButton:Contacts");
+			tabBar.createItem("recents", "Unused, iOS replaces this text by Recents", "tabButton:Recents", {
+			  onSelect: function() {
+					alert("Recents tab selected");
+			  }
+			});
+			
+			tabBar.show();
+			tabBar.showItems("contacts", "recents");
+			
+			window.addEventListener("resize", function() { tabBar.resize() }, false);
+		
+			this.model.activeView.appDelegate = this;
+			this.model.activeView.render();
+			
+			return this.el.find("#content").html(this.model.activeView.el);
+		}
+	 },
+	 renderSecondView: function() {
+		if (this.model.secondView) {
+			this.model.secondView.appDelegate = this;
+			this.model.secondView.render();
+			
+			return this.el.find("#content").append(this.model.secondView.el);
+		}
+	 },
+	 postRender: function() {}
   });
 
 }).call(this);

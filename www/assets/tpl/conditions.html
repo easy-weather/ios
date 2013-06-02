@@ -1,8 +1,7 @@
 <article id="conditionsContainer">
 	<article id="location">For <%= city %></article>
-	<h2>Today</h2>
 	<section id="conditionsMain">
-	<img src="http://cloud.keepiteasy.net/images/icons/<%= icon %>.gif">
+		<img src="http://cloud.keepiteasy.net/images/icons/<%= icon %>.gif">
 		<h3 id="currentTemp"><%= temp %> K</h3>
 		<span>(<%= temp_c %>° C)</span>
 	</section>
@@ -16,13 +15,13 @@
 		<article>
 			<p>UV Index</p><p><%= UV %></p>
 		</article>
-		<article>
+		<article class="hidden">
 			<p>Visibility</p><p><%= visibility %>km</p>
 		</article>
 		<article>
 			<p>Precipitation</p><p><%= precip %>mm</p>
 		</article>
-		<article>
+		<article class="hidden">
 			<p>Windchill</p><p><%= windchill %></p>
 		</article>
 	</section>

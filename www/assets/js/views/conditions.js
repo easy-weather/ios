@@ -2,17 +2,28 @@
 (function() {
 
   WEATHER.Views.Conditions = Backbone.View.extend({
-    id: "conditions",
-    initialize: function() {
-      this.el = $(this.el);
-      return this.template = _.template(WEATHER.Templates["conditions"]);
-    },
-    render: function() {
-      var conditions;
-      conditions = this.model.models[0].toJSON();
-      $(this.el).html(this.template(conditions));
-      return this;
-    }
+	 id: "conditions",
+	 initialize: function() {
+		this.el = $(this.el);
+		return this.template = _.template(WEATHER.Templates["conditions"]);
+	 },
+	 render: function() {
+		var conditions, uv;
+		
+		//alert(this.model.models[0]);
+		
+		uv = this.model.models[0].get("UV");
+		
+		if(uv < 0) {
+			uv = 0;
+		}
+		
+		this.model.models[0].get("UV", uv);
+		
+		conditions = this.model.models[0].toJSON();
+		$(this.el).html(this.template(conditions));
+		return this;
+	 }
   });
 
 }).call(this);
