@@ -470,8 +470,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff hann (86G8JYN5Q5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff hann (86G8JYN5Q5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -482,8 +482,8 @@
 				INFOPLIST_FILE = "EasyWeather/EasyWeather-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = EasyWeather;
-				PROVISIONING_PROFILE = "B11348EC-CA15-4A7D-8405-7098C75546A5";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B11348EC-CA15-4A7D-8405-7098C75546A5";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -493,8 +493,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jeff hann (Q4F7BFDG55)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jeff hann (Q4F7BFDG55)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EasyWeather/EasyWeather-Prefix.pch";
@@ -503,8 +503,8 @@
 				INFOPLIST_FILE = "EasyWeather/EasyWeather-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = EasyWeather;
-				PROVISIONING_PROFILE = "4E5B2181-CFDC-4C2E-BD55-C730CA4E2653";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4E5B2181-CFDC-4C2E-BD55-C730CA4E2653";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
