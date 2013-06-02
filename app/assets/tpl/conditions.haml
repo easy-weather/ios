@@ -1,8 +1,9 @@
+%header
+  %h2 Today
 %article#conditionsContainer
   %article#location For <%= city %>
-  %h2 Today
   %section#conditionsMain
-    %img{:src => "http://cloud.keepiteasy.net/images/icons/<%= icon %>.gif"}
+    %img{:src => "icons/<%= icon %>.gif"}
       %h3#currentTemp <%= temp %> K
       %span (<%= temp_c %>° C)
   %section#conditionsDetails
@@ -15,10 +16,13 @@
     %article
       %p UV Index
       %p <%=  UV %>
-    %article
+    %article.hidden
       %p Visibility
       %p <%= visibility %>km
     %article
       %p Precipitation
       %p <%= precip %>mm
+    %article.hidden
+      %p Windchill
+      %p <%= windchill %>mm
   %p#conditionsTime <%= time %>s
